@@ -17,7 +17,7 @@ export default function Decoration() {
         <Box component="picture"
         sx={{
           display: "block",
-          position: "static",
+          position: "absolute",
           width: "100vw",
           height: "30vh",
         }}
@@ -37,7 +37,7 @@ export default function Decoration() {
           <Box component="picture"
           sx={{
             display: "block",
-            position: "static",
+            position: "absolute",
             width: "100vw",
             height: "30vh",
           }}

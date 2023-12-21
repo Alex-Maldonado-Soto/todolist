@@ -9,7 +9,7 @@ function App() {
   return (
     <main>
       <Decoration />
-      <Container>
+      <Container sx={{zIndex: "100", position: "relative", padding: "50px 40px"}}>
         <Bar />
         <NewTodo />
         <Todos />
