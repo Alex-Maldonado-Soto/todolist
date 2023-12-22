@@ -14,7 +14,7 @@ export const Theme = createTheme({
       main: "hsl(220, 98%, 61%)",
     },
     secondary: {
-      main: "#f50057",
+      main: "hsl(192, 100%, 67%), hsl(280, 87%, 65%)",
     },
     error: {
       main: "hsl(0, 100%, 66%)",
@@ -35,7 +35,7 @@ export const Theme = createTheme({
       main: "hsl(220, 98%, 61%)",
     },
     secondary: {
-      main: "#f50057",
+      main: "hsl(234, 39%, 85%)",
     },
     error: {
       main: "hsl(0, 100%, 66%)",
