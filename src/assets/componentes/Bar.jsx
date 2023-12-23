@@ -9,7 +9,7 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function Decoration() {
   return (
-    <Container component="nav" sx={{ padding: "0px" }}>
+    <Container component="nav" sx={{ padding: "0px", marginBottom: "20px" }}>
       <Box
         display="flex"
         sx={{
@@ -38,11 +38,9 @@ export default function Decoration() {
         sx={{
           width: "100%",
           borderRadius: "10px",
-          padding: "10px 20px",
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-start",
-          gap: "20px",
         }}
       >
         <Checkbox

@@ -41,8 +41,8 @@ export const Theme = createTheme({
       main: "hsl(0, 100%, 66%)",
     },
     background: {
-      default: "hsl(235, 21%, 11%)",
-      paper: "hsl(235, 24%, 19%)",
+      default: "hsl(235, 24%, 19%)",
+      paper: "hsl(235, 21%, 11%)",
     },
     text: {
       primary: "hsl(234, 39%, 85%)",
