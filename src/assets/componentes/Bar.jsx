@@ -57,6 +57,7 @@ export default function Decoration() {
           size="small"
           sx={{
             width: "100%",
+
           }}
         />
       </Box>

@@ -8,7 +8,7 @@ export default function Footer() {
     sx={{
         backgroundColor: Theme.palette.background.default,
         borderRadius: "10px",
-        padding: "10px",
+        padding: "20px 10px",
         display: "flex",
         justifyContent: "center",
         marginTop: "15px",
