@@ -28,6 +28,7 @@ export const Theme = createTheme({
       secondary: "hsl(236, 9%, 61%)",
       primary: "hsl(235, 19%, 35%)",
     },
+    divider: 'hsl(234, 39%, 85%)',
   },
   palette: {
     type: "dark",
@@ -50,5 +51,6 @@ export const Theme = createTheme({
       disabled: "hsl(237, 14%, 26%)",
       hint: "hsl(233, 14%, 35%)",
     },
+    divider: 'hsl(234, 39%, 85%)',
   },
 });
