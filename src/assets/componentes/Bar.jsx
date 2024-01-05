@@ -1,4 +1,11 @@
-import { Box, Container, TextField, Typography, Checkbox } from "@mui/material";
+import {
+  Box,
+  Container,
+  TextField,
+  Typography,
+  Checkbox,
+  Button,
+} from "@mui/material";
 import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
 import Brightness1OutlinedIcon from "@mui/icons-material/Brightness1Outlined";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
@@ -57,7 +64,6 @@ export default function Decoration() {
           size="small"
           sx={{
             width: "100%",
-
           }}
         />
       </Box>
