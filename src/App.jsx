@@ -1,14 +1,10 @@
 import {
   Container,
-  Button,
-  Slide,
   ListItem,
   Checkbox,
   ListItemText,
   IconButton,
   Grow,
-  Collapse,
-  Zoom,
 } from "@mui/material";
 import React from "react";
 import Bar from "./assets/componentes/Bar";
@@ -38,12 +34,10 @@ function App() {
   //////newTodos lo que hace es crear un objeto con propiedades
   //////Luego setTodos selecciona todos los todos ya existentes y agrega el nuevo objeto con los valores correspondientes
 
-
   const deleteTodos = (id) => {
     const newTodos = todos.filter((todo) => todo.id !== id);
     setTodos(newTodos);
   };
-
 
   ////Lo que hace es filtrar todos los todos que no coincidan con el id y crea todos menos el que coincida
 
@@ -74,7 +68,7 @@ function App() {
         }}
       >
         <Checkbox
-          color="secondary"
+          color="hint"
           checked={todo.check}
           onChange={() => {
             handleCheck(todo.id);
@@ -85,11 +79,21 @@ function App() {
         <ListItemText
           primary={todo.name}
           sx={{
+            color: todo.check
+              ? Theme.palette.text.disabled
+              : Theme.palette.text.primary,
             textDecoration: todo.check ? "line-through" : "none",
             maxWidth: "80vw",
           }}
         />
-        <IconButton color="secondary" onClick={() => deleteTodos(todo.id)}>
+        <IconButton
+          sx={{
+            color: todo.check
+              ? Theme.palette.text.disabled
+              : Theme.palette.text.primary,
+          }}
+          onClick={() => deleteTodos(todo.id)}
+        >
           <CloseIcon label="clickable" />
         </IconButton>
       </ListItem>

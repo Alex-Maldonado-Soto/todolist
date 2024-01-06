@@ -10,6 +10,9 @@ export const Theme = createTheme({
   },
   palette: {
     type: "light",
+    disabled: {
+      main: "hsl(233, 11%, 84%)",
+    },
     primary: {
       main: "hsl(220, 98%, 61%)",
     },
@@ -32,6 +35,9 @@ export const Theme = createTheme({
   },
   palette: {
     type: "dark",
+    hint: {
+      main: "hsl(237, 14%, 26%)",
+    },
     primary: {
       main: "hsl(220, 98%, 61%)",
     },

@@ -67,6 +67,7 @@ export default function Decoration({ handleAddTodos }) {
         <TextField
           id="createTodo"
           type="text"
+          autoComplete="off"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Create a new todo..."
