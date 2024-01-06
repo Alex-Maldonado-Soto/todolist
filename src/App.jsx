@@ -1,10 +1,14 @@
 import {
   Container,
   Button,
+  Slide,
   ListItem,
   Checkbox,
   ListItemText,
   IconButton,
+  Grow,
+  Collapse,
+  Zoom,
 } from "@mui/material";
 import React from "react";
 import Bar from "./assets/componentes/Bar";
@@ -25,6 +29,8 @@ function App() {
       name: name,
       id: uuidv4(),
       check: false,
+      timeout: 1000,
+      delete: true,
     };
     setTodos([...todos, newTodo]);
   };
@@ -32,10 +38,12 @@ function App() {
   //////newTodos lo que hace es crear un objeto con propiedades
   //////Luego setTodos selecciona todos los todos ya existentes y agrega el nuevo objeto con los valores correspondientes
 
+
   const deleteTodos = (id) => {
     const newTodos = todos.filter((todo) => todo.id !== id);
     setTodos(newTodos);
   };
+
 
   ////Lo que hace es filtrar todos los todos que no coincidan con el id y crea todos menos el que coincida
 
@@ -55,32 +63,37 @@ function App() {
 
   //////////Crea una lista de todos y un checkbox para cada uno de ellos usando los datos de los objetos
   const listTodos = todos.map((todo) => (
-    <ListItem
-      key={todo.id}
-      sx={{
-        maxWidth: "80vw",
-        display: "flex",
-        justifyContent: "space-between",
-        width: "100%",
-      }}
-    >
-      <Checkbox
-        color="secondary"
-        checked={todo.check}
-        onChange={() => {
-          handleCheck(todo.id);
+    <Grow key={todo.id} in={true} timeout={1000} appear>
+      <ListItem
+        key={todo.id}
+        sx={{
+          maxWidth: "80vw",
+          display: "flex",
+          justifyContent: "space-between",
+          width: "100%",
         }}
-        icon={<Brightness1OutlinedIcon />}
-        checkedIcon={<CheckCircleOutlineIcon />}
-      />
-      <ListItemText
-        primary={todo.name}
-        sx={{ textDecoration: todo.check ? "line-through" : "none", maxWidth: "80vw", }}
-      />
-      <IconButton color="secondary" onClick={() => deleteTodos(todo.id)}>
-        <CloseIcon label="clickable" />
-      </IconButton>
-    </ListItem>
+      >
+        <Checkbox
+          color="secondary"
+          checked={todo.check}
+          onChange={() => {
+            handleCheck(todo.id);
+          }}
+          icon={<Brightness1OutlinedIcon />}
+          checkedIcon={<CheckCircleOutlineIcon />}
+        />
+        <ListItemText
+          primary={todo.name}
+          sx={{
+            textDecoration: todo.check ? "line-through" : "none",
+            maxWidth: "80vw",
+          }}
+        />
+        <IconButton color="secondary" onClick={() => deleteTodos(todo.id)}>
+          <CloseIcon label="clickable" />
+        </IconButton>
+      </ListItem>
+    </Grow>
   ));
 
   return (
@@ -95,7 +108,11 @@ function App() {
     >
       <Decoration />
       <Container
-        sx={{ zIndex: "100", position: "relative", padding: { xs: "50px 40px" } }}
+        sx={{
+          zIndex: "100",
+          position: "relative",
+          padding: { xs: "50px 40px" },
+        }}
       >
         <Bar handleAddTodos={handleAddTodos} />
         <Todos
