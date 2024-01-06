@@ -20,9 +20,9 @@ import { Theme } from "./assets/Theme";
 function App() {
   const [todos, setTodos] = React.useState([]);
 
-  const handleAddTodos = () => {
+  const handleAddTodos = (name) => {
     const newTodo = {
-      name: Math.random(),
+      name: name,
       id: uuidv4(),
       check: false,
     };
@@ -58,6 +58,7 @@ function App() {
     <ListItem
       key={todo.id}
       sx={{
+        maxWidth: "80vw",
         display: "flex",
         justifyContent: "space-between",
         width: "100%",
@@ -74,7 +75,7 @@ function App() {
       />
       <ListItemText
         primary={todo.name}
-        sx={{ textDecoration: todo.check ? "line-through" : "none" }}
+        sx={{ textDecoration: todo.check ? "line-through" : "none", maxWidth: "80vw", }}
       />
       <IconButton color="secondary" onClick={() => deleteTodos(todo.id)}>
         <CloseIcon label="clickable" />
@@ -94,16 +95,15 @@ function App() {
     >
       <Decoration />
       <Container
-        sx={{ zIndex: "100", position: "relative", padding: "50px 40px" }}
+        sx={{ zIndex: "100", position: "relative", padding: { xs: "50px 40px" } }}
       >
-        <Bar />
+        <Bar handleAddTodos={handleAddTodos} />
         <Todos
           listTodos={listTodos}
           handleCheck={handleCheck}
           deleteTodos={deleteTodos}
         />
         <Footer />
-        <Button onClick={handleAddTodos}>Hola</Button>
       </Container>
     </Container>
   );

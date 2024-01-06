@@ -3,23 +3,26 @@ import {
   Container,
   TextField,
   Typography,
-  Checkbox,
-  Button,
+  IconButton,
 } from "@mui/material";
 import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
-import Brightness1OutlinedIcon from "@mui/icons-material/Brightness1Outlined";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import React from "react";
 import { Theme } from "../Theme";
 
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
+export default function Decoration({ handleAddTodos }) {
+  const [name, setName] = React.useState("");
 
-export default function Decoration() {
+  const addTodo = (name) => {
+    handleAddTodos(name);
+  };
+
   return (
-    <Container component="nav" sx={{ padding: "0px", marginBottom: "20px" }}>
+    <Container component="nav" sx={{ padding: { xs: "0px" }, marginBottom: "20px" }}>
       <Box
         display="flex"
         sx={{
+          padding: "0px",
           margin: "none",
           alignItems: "center",
           display: "flex",
@@ -41,6 +44,14 @@ export default function Decoration() {
         <WbSunnyOutlinedIcon />
       </Box>
       <Box
+        component={"form"}
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (name.length > 1) {
+            addTodo(name);
+            setName("");
+          }
+        }}
         backgroundColor={Theme.palette.background.default}
         sx={{
           width: "100%",
@@ -50,15 +61,14 @@ export default function Decoration() {
           justifyContent: "flex-start",
         }}
       >
-        <Checkbox
-          color="secondary"
-          {...label}
-          icon={<Brightness1OutlinedIcon />}
-          checkedIcon={<CheckCircleOutlineIcon />}
-        />
+        <IconButton color="secondary" type="submit">
+          <CheckCircleOutlineIcon />
+        </IconButton>
         <TextField
           id="createTodo"
           type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           placeholder="Create a new todo..."
           variant="outlined"
           size="small"

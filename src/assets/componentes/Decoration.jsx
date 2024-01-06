@@ -33,9 +33,10 @@ export default function Decoration() {
   } else if (true) {
 
       return (
-        <Container sx={{padding: 0}}>
+        <Container sx={{padding: {xs: 0, sm: 0}}}>
           <Box component="picture"
           sx={{
+            padding: 0,
             display: "block",
             position: "absolute",
             width: "100vw",
