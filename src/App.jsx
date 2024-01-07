@@ -19,6 +19,7 @@ import { Theme } from "./assets/Theme";
 
 function App() {
   const [todos, setTodos] = React.useState([]);
+  const [todosShow, setTodosShow] = React.useState([]);
 
   const handleAddTodos = (name) => {
     const newTodo = {
@@ -26,20 +27,47 @@ function App() {
       id: uuidv4(),
       check: false,
       timeout: 1000,
-      delete: true,
     };
     setTodos([...todos, newTodo]);
+    setTodosShow([...todosShow, newTodo]);
   };
   ///////uuidv4 es una libreria que genera un id aleatorio
   //////newTodos lo que hace es crear un objeto con propiedades
   //////Luego setTodos selecciona todos los todos ya existentes y agrega el nuevo objeto con los valores correspondientes
 
+
   const deleteTodos = (id) => {
     const newTodos = todos.filter((todo) => todo.id !== id);
     setTodos(newTodos);
+    setTodosShow(newTodos);
   };
 
   ////Lo que hace es filtrar todos los todos que no coincidan con el id y crea todos menos el que coincida
+
+  const clearTodos = () => {
+    const newTodos = todos.filter((todo) => !todo.check);
+    setTodos(newTodos);
+    setTodosShow(newTodos);
+  }
+
+  /////Lo que hace es filtrar todos los todos que tengan check como false y crea todos menos esos
+
+  const allTodos = () => {
+    const newTodos = todos;
+    setTodosShow(newTodos);
+  }
+  /////Coloca todos los todos existentes
+
+  const activeTodos = () => {
+    const newTodos = todos.filter((todo) => todo.check == false);
+    setTodosShow(newTodos);
+  }
+  ////Lo que hace es mostrar todos los todos existentes que tengan check como true
+
+  const completedTodos = () => {
+    const newTodos = todos.filter((todo) => todo.check == true);
+    setTodosShow(newTodos);
+  }
 
   const handleCheck = (id) => {
     const newTodos = todos.map((todo) => {
@@ -52,11 +80,12 @@ function App() {
       return todo;
     });
     setTodos(newTodos);
+    setTodosShow(newTodos);
   };
   //////Lo que hace es cambiar el valor de check del todo que coincida con el id y vuelve a crear todos
 
   //////////Crea una lista de todos y un checkbox para cada uno de ellos usando los datos de los objetos
-  const listTodos = todos.map((todo) => (
+  const listTodos = todosShow.map((todo) => (
     <Grow key={todo.id} in={true} timeout={1000} appear>
       <ListItem
         key={todo.id}
@@ -120,11 +149,16 @@ function App() {
       >
         <Bar handleAddTodos={handleAddTodos} />
         <Todos
+          clearTodos={clearTodos}
           listTodos={listTodos}
           handleCheck={handleCheck}
           deleteTodos={deleteTodos}
         />
-        <Footer />
+        <Footer 
+          allTodos={allTodos}
+          activeTodos={activeTodos}
+          completedTodos={completedTodos}
+        />
       </Container>
     </Container>
   );

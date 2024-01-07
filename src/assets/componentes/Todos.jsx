@@ -1,9 +1,12 @@
-import { Button, Container, List, Typography } from "@mui/material";
+import { Box, Button, Container, List, Typography } from "@mui/material";
 import React from "react";
 import { Theme } from "../Theme";
-import useScrollTrigger from "@mui/material/useScrollTrigger";
 
-export default function Todos({ listTodos }) {
+export default function Todos({ listTodos, clearTodos }) {
+  const accion = () => {
+    clearTodos();
+  };
+
   return (
     <Container
       component="section"
@@ -13,12 +16,53 @@ export default function Todos({ listTodos }) {
         backgroundColor: Theme.palette.background.default,
         borderRadius: "10px",
         display: "grid",
-        overflowY: "auto",
-        scrollbehavior: "smooth",
+        gridTemplateRows: "90% 10%",
       }}
     >
-      <List>{listTodos}</List>
-      <Typography variant="span" color={Theme.palette.text.hint}>Hola</Typography>
+      <List
+        sx={{
+          overflowY: "auto",
+          scrollbehavior: "smooth",
+        }}
+      >
+        {listTodos}
+      </List>
+      <Box
+        component="aside"
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "0px 10px",
+        }}
+      >
+        <Button
+        
+          size="small"
+          color="hint"
+          component={"span"}
+          sx={{
+            color: Theme.palette.text.hint,
+            fontSize: ".9rem",
+            textTransform: "capitalize",
+          }}
+        >
+          {listTodos.length} Todos
+        </Button>
+        <Button
+          size="small"
+          color="hint"
+          variant="text"
+          onClick={() => accion()}
+          sx={{
+            color: Theme.palette.text.hint,
+            fontSize: ".9rem",
+            textTransform: "capitalize",
+          }}
+        >
+          Clear Completed
+        </Button>
+      </Box>
     </Container>
   );
 }

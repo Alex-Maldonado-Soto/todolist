@@ -1,39 +1,67 @@
-import { Breadcrumbs, Container, Link, Typography } from "@mui/material";
+import { Breadcrumbs, Container, Button, Box } from "@mui/material";
 import React from "react";
 import { Theme } from "../Theme";
 
-export default function Footer() {
+export default function Footer({ allTodos, activeTodos, completedTodos }) {
+  const all = () => {
+    allTodos();
+  };
+  const active = () => {
+    activeTodos();
+    console.log("hola");
+  };
+  const completed = () => {
+    completedTodos();
+  };
+
   return (
-    <Container component="nav"
-    sx={{
+    <Container
+      component="nav"
+      sx={{
         backgroundColor: Theme.palette.background.default,
         borderRadius: "10px",
         padding: "20px 10px",
         display: "flex",
         justifyContent: "center",
         marginTop: "15px",
-
-    }}
+      }}
     >
-      <Breadcrumbs aria-label="breadcrumb" separator="">
-        <Link underline="none" color="inherit" href="">
+      <Box
+        sx={{
+          display: "flex",
+          gap: "10px",
+          alignItems: "center",
+          justifyContent: "space-around",
+          width: "100%",
+        }}
+      >
+        <Button
+          sx={{ fontSize: ".8rem", textTransform: "capitalize" }}
+          size="small"
+          onClick={() => all()}
+          color="inherit"
+        >
           All
-        </Link>
-        <Link
+        </Button>
+        <Button
+          sx={{ fontSize: ".8rem", textTransform: "capitalize" }}
+          onClick={() => active()}
+          size="small"
           underline="none"
           color="inherit"
-          href=""
         >
           Active
-        </Link>
-        <Link
+        </Button>
+        <Button
+          onClick={() => completed()}
+          sx={{ fontSize: ".8rem", textTransform: "capitalize" }}
+          size="small"
           underline="none"
           color="inherit"
-          href=""
         >
           Completed
-        </Link>
-      </Breadcrumbs>
+        </Button>
+      </Box>
     </Container>
   );
 }
