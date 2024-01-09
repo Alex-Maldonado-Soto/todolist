@@ -2,7 +2,7 @@ import { Breadcrumbs, Container, Button, Box } from "@mui/material";
 import React from "react";
 import { Theme } from "../Theme";
 
-export default function Footer({ allTodos, activeTodos, completedTodos }) {
+export default function Footer({ allTodos, activeTodos, completedTodos, mode }) {
   const all = () => {
     allTodos();
   };
@@ -18,7 +18,7 @@ export default function Footer({ allTodos, activeTodos, completedTodos }) {
     <Container
       component="nav"
       sx={{
-        backgroundColor: Theme.palette.background.default,
+        backgroundColor: mode.palette.background.default,
         borderRadius: "10px",
         padding: "20px 10px",
         display: "flex",
@@ -36,7 +36,7 @@ export default function Footer({ allTodos, activeTodos, completedTodos }) {
         }}
       >
         <Button
-          sx={{ fontSize: ".8rem", textTransform: "capitalize" }}
+          sx={{ fontSize: ".8rem", textTransform: "capitalize", color: mode.palette.text.hint }}
           size="small"
           onClick={() => all()}
           color="inherit"
@@ -44,7 +44,7 @@ export default function Footer({ allTodos, activeTodos, completedTodos }) {
           All
         </Button>
         <Button
-          sx={{ fontSize: ".8rem", textTransform: "capitalize" }}
+          sx={{ fontSize: ".8rem", textTransform: "capitalize", color: mode.palette.text.hint }}
           onClick={() => active()}
           size="small"
           underline="none"
@@ -54,7 +54,7 @@ export default function Footer({ allTodos, activeTodos, completedTodos }) {
         </Button>
         <Button
           onClick={() => completed()}
-          sx={{ fontSize: ".8rem", textTransform: "capitalize" }}
+          sx={{ fontSize: ".8rem", textTransform: "capitalize", color: mode.palette.text.hint }}
           size="small"
           underline="none"
           color="inherit"

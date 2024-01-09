@@ -5,6 +5,7 @@ import {
   ListItemText,
   IconButton,
   Grow,
+  Button,
 } from "@mui/material";
 import React from "react";
 import Bar from "./assets/componentes/Bar";
@@ -15,11 +16,21 @@ import Brightness1OutlinedIcon from "@mui/icons-material/Brightness1Outlined";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CloseIcon from "@mui/icons-material/Close";
 import { v4 as uuidv4 } from "uuid";
-import { Theme } from "./assets/Theme";
+import { ThemeProvider } from "@emotion/react";
+import { Theme, ThemeDark } from "./assets/Theme.jsx";
 
 function App() {
   const [todos, setTodos] = React.useState([]);
   const [todosShow, setTodosShow] = React.useState([]);
+  const [mode, setMode] = React.useState(Theme);
+
+  const changeMode = (mode) => {
+    if (mode == ThemeDark) {
+      setMode(Theme);
+    } else {
+      setMode(ThemeDark);
+    }
+  };
 
   const handleAddTodos = (name) => {
     const newTodo = {
@@ -35,7 +46,6 @@ function App() {
   //////newTodos lo que hace es crear un objeto con propiedades
   //////Luego setTodos selecciona todos los todos ya existentes y agrega el nuevo objeto con los valores correspondientes
 
-
   const deleteTodos = (id) => {
     const newTodos = todos.filter((todo) => todo.id !== id);
     setTodos(newTodos);
@@ -48,26 +58,26 @@ function App() {
     const newTodos = todos.filter((todo) => !todo.check);
     setTodos(newTodos);
     setTodosShow(newTodos);
-  }
+  };
 
   /////Lo que hace es filtrar todos los todos que tengan check como false y crea todos menos esos
 
   const allTodos = () => {
     const newTodos = todos;
     setTodosShow(newTodos);
-  }
+  };
   /////Coloca todos los todos existentes
 
   const activeTodos = () => {
     const newTodos = todos.filter((todo) => todo.check == false);
     setTodosShow(newTodos);
-  }
+  };
   ////Lo que hace es mostrar todos los todos existentes que tengan check como true
 
   const completedTodos = () => {
     const newTodos = todos.filter((todo) => todo.check == true);
     setTodosShow(newTodos);
-  }
+  };
 
   const handleCheck = (id) => {
     const newTodos = todos.map((todo) => {
@@ -97,7 +107,7 @@ function App() {
         }}
       >
         <Checkbox
-          color="hint"
+        color="hint"
           checked={todo.check}
           onChange={() => {
             handleCheck(todo.id);
@@ -109,8 +119,8 @@ function App() {
           primary={todo.name}
           sx={{
             color: todo.check
-              ? Theme.palette.text.disabled
-              : Theme.palette.text.primary,
+              ? mode.palette.text.disabled
+              : mode.palette.text.primary,
             textDecoration: todo.check ? "line-through" : "none",
             maxWidth: "80vw",
           }}
@@ -118,8 +128,8 @@ function App() {
         <IconButton
           sx={{
             color: todo.check
-              ? Theme.palette.text.disabled
-              : Theme.palette.text.primary,
+              ? mode.palette.text.disabled
+              : mode.palette.text.primary,
           }}
           onClick={() => deleteTodos(todo.id)}
         >
@@ -130,37 +140,42 @@ function App() {
   ));
 
   return (
-    <Container
-      component="main"
-      sx={{
-        padding: { xs: "0px", md: "0px" },
-        height: "100vh",
-        margin: "0",
-        backgroundColor: Theme.palette.background.paper,
-      }}
-    >
-      <Decoration />
+    <ThemeProvider theme={mode}>
       <Container
+        component="main"
         sx={{
-          zIndex: "100",
-          position: "relative",
-          padding: { xs: "50px 40px" },
+          padding: { xs: "0px", md: "0px" },
+          height: "100vh",
+          margin: "0",
+          backgroundColor: mode.palette.background.paper,
         }}
       >
-        <Bar handleAddTodos={handleAddTodos} />
-        <Todos
-          clearTodos={clearTodos}
-          listTodos={listTodos}
-          handleCheck={handleCheck}
-          deleteTodos={deleteTodos}
-        />
-        <Footer 
-          allTodos={allTodos}
-          activeTodos={activeTodos}
-          completedTodos={completedTodos}
-        />
+        <Decoration />
+        <Container
+          sx={{
+            zIndex: "100",
+            position: "relative",
+            padding: { xs: "50px 40px" },
+          }}
+        >
+          <Bar handleAddTodos={handleAddTodos} mode={mode} />
+          <Todos
+            mode={mode}
+            clearTodos={clearTodos}
+            listTodos={listTodos}
+            handleCheck={handleCheck}
+            deleteTodos={deleteTodos}
+          />
+          <Footer
+            mode={mode}
+            allTodos={allTodos}
+            activeTodos={activeTodos}
+            completedTodos={completedTodos}
+          />
+          <Button onClick={() => changeMode(mode)}>fsdfasdf</Button>
+        </Container>
       </Container>
-    </Container>
+    </ThemeProvider>
   );
 }
 

@@ -9,7 +9,10 @@ export const Theme = createTheme({
     fontFamily: "Josefin Sans, sans-serif",
   },
   palette: {
-    type: "light",
+    mode: "light",
+    hint: {
+      main: "hsl(233, 11%, 84%)",
+    },
     disabled: {
       main: "hsl(233, 11%, 84%)",
     },
@@ -23,18 +26,27 @@ export const Theme = createTheme({
       main: "hsl(0, 100%, 66%)",
     },
     background: {
-      default: "hsl(0, 0%, 98%)",
+      default: 'hsl(0, 0%, 98%)',
+      paper: 'hsl(236, 33%, 92%)',
     },
     text: {
-      disabled: "hsl(236, 33%, 92%)",
-      hint: "hsl(233, 11%, 84%)",
+      disabled: "hsl(233, 11%, 84%)",
+      hint: "hsl(236, 9%, 61%)",
       secondary: "hsl(236, 9%, 61%)",
       primary: "hsl(235, 19%, 35%)",
+      title:"hsl(0, 0%, 98%)",
     },
     divider: 'hsl(234, 39%, 85%)',
   },
+});
+
+
+export const ThemeDark = createTheme({
+  typography: {
+    fontFamily: "Josefin Sans, sans-serif",
+  },
   palette: {
-    type: "dark",
+    mode: "dark",
     hint: {
       main: "hsl(237, 14%, 26%)",
     },
@@ -56,7 +68,8 @@ export const Theme = createTheme({
       secondary: "hsl(236, 33%, 92%)",
       disabled: "hsl(237, 14%, 26%)",
       hint: "hsl(233, 14%, 35%)",
+      title:"hsl(0, 0%, 98%)",
     },
     divider: 'hsl(234, 39%, 85%)',
   },
-});
+})

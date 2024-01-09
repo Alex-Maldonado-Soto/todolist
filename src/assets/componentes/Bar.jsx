@@ -10,7 +10,7 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import React from "react";
 import { Theme } from "../Theme";
 
-export default function Decoration({ handleAddTodos }) {
+export default function Decoration({ handleAddTodos, mode }) {
   const [name, setName] = React.useState("");
 
   const addTodo = (name) => {
@@ -33,6 +33,7 @@ export default function Decoration({ handleAddTodos }) {
         }}
       >
         <Typography
+        color={mode.palette.text.title}
           variant="h4"
           fontWeight="bold"
           sx={{
@@ -52,7 +53,7 @@ export default function Decoration({ handleAddTodos }) {
             setName("");
           }
         }}
-        backgroundColor={Theme.palette.background.default}
+        backgroundColor={mode.palette.background.default}
         sx={{
           width: "100%",
           borderRadius: "10px",
