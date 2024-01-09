@@ -2,6 +2,7 @@ import React from "react";
 import img from "../images/img";
 import { Box, Container } from "@mui/material";
 import styled from "@emotion/styled";
+import { Theme, ThemeDark } from "../Theme";
 
 const Img = styled("img")({
   width: "100%",
@@ -10,10 +11,10 @@ const Img = styled("img")({
   objectPosition: "center",
 });
 
-export default function Decoration() {
-  if (false) {
+export default function Decoration({mode}) {
+  if (mode == Theme) {
     return (
-      <Container sx={{padding: 0}}>
+      <Container sx={{padding: {xs: 0, sm: 0}}}>
         <Box component="picture"
         sx={{
           display: "block",
@@ -30,7 +31,7 @@ export default function Decoration() {
         </Box>
       </Container>
     );
-  } else if (true) {
+  } else if (mode == ThemeDark) {
 
       return (
         <Container sx={{padding: {xs: 0, sm: 0}}}>

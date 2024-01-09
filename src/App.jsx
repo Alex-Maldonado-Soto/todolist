@@ -150,7 +150,7 @@ function App() {
           backgroundColor: mode.palette.background.paper,
         }}
       >
-        <Decoration />
+        <Decoration mode={mode}/>
         <Container
           sx={{
             zIndex: "100",
@@ -158,7 +158,7 @@ function App() {
             padding: { xs: "50px 40px" },
           }}
         >
-          <Bar handleAddTodos={handleAddTodos} mode={mode} />
+          <Bar handleAddTodos={handleAddTodos} mode={mode} changeMode={changeMode}/>
           <Todos
             mode={mode}
             clearTodos={clearTodos}
@@ -172,7 +172,6 @@ function App() {
             activeTodos={activeTodos}
             completedTodos={completedTodos}
           />
-          <Button onClick={() => changeMode(mode)}>fsdfasdf</Button>
         </Container>
       </Container>
     </ThemeProvider>

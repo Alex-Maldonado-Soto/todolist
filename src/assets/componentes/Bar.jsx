@@ -7,18 +7,26 @@ import {
 } from "@mui/material";
 import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import ModeNightIcon from '@mui/icons-material/ModeNight';
 import React from "react";
-import { Theme } from "../Theme";
+import { ThemeDark } from "../Theme";
 
-export default function Decoration({ handleAddTodos, mode }) {
+export default function Decoration({ handleAddTodos, mode, changeMode }) {
   const [name, setName] = React.useState("");
 
   const addTodo = (name) => {
     handleAddTodos(name);
   };
 
+  const handleChange = (mode) => {
+    changeMode(mode);
+  }
+
   return (
-    <Container component="nav" sx={{ padding: { xs: "0px" }, marginBottom: "20px" }}>
+    <Container
+      component="nav"
+      sx={{ padding: { xs: "0px" }, marginBottom: "20px" }}
+    >
       <Box
         display="flex"
         sx={{
@@ -33,7 +41,7 @@ export default function Decoration({ handleAddTodos, mode }) {
         }}
       >
         <Typography
-        color={mode.palette.text.title}
+          color={mode.palette.text.title}
           variant="h4"
           fontWeight="bold"
           sx={{
@@ -42,7 +50,10 @@ export default function Decoration({ handleAddTodos, mode }) {
         >
           TODO
         </Typography>
-        <WbSunnyOutlinedIcon />
+
+        <IconButton sx={{ color: mode.palette.text.title }} type="submit" onClick={() => handleChange(mode)}>
+        {mode === ThemeDark ? <WbSunnyOutlinedIcon /> : <ModeNightIcon />}
+        </IconButton>
       </Box>
       <Box
         component={"form"}
