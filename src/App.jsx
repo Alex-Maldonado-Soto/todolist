@@ -74,7 +74,6 @@ function App() {
     setTodos([...todos, newTodo]);
     setTodosShow([...todosShow, newTodo]);
     localStorage.setItem("todos", JSON.stringify([...todos, newTodo]));
-    console.log(localStorage.getItem("todos"), newTodo);
   };
   ///////uuidv4 es una libreria que genera un id aleatorio
   //////newTodos lo que hace es crear un objeto con propiedades
@@ -86,7 +85,6 @@ function App() {
     setTodosShow(newTodos);
     localStorage.setItem("todos", JSON.stringify(newTodos));
   };
-ç
   ////Lo que hace es filtrar todos los todos que no coincidan con el id y crea todos menos el que coincida
 
   const clearTodos = () => {
