@@ -11,7 +11,7 @@ export const Theme = createTheme({
   palette: {
     mode: "light",
     hint: {
-      main: "hsl(233, 11%, 84%)",
+      main: "hsl(236, 9%, 61%)",
     },
     disabled: {
       main: "hsl(233, 11%, 84%)",
@@ -30,7 +30,7 @@ export const Theme = createTheme({
       paper: 'hsl(236, 33%, 92%)',
     },
     text: {
-      disabled: "hsl(233, 11%, 84%)",
+      disabled: "hsl(236, 9%, 61%)",
       hint: "hsl(236, 9%, 61%)",
       secondary: "hsl(236, 9%, 61%)",
       primary: "hsl(235, 19%, 35%)",

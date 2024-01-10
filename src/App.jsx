@@ -7,7 +7,7 @@ import {
   Grow,
   Button,
 } from "@mui/material";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Bar from "./assets/componentes/Bar";
 import Decoration from "./assets/componentes/Decoration";
 import Footer from "./assets/componentes/Footer";
@@ -20,8 +20,40 @@ import { ThemeProvider } from "@emotion/react";
 import { Theme, ThemeDark } from "./assets/Theme.jsx";
 
 function App() {
-  const [todos, setTodos] = React.useState([]);
-  const [todosShow, setTodosShow] = React.useState([]);
+  if (!localStorage.getItem("todos")) {
+    localStorage.setItem("todos", [{
+      name: "Tarea 1",
+      id: "a74c9cd6-778c-4783-94e0-1d0f6630e92f",
+      check: false,
+      timeout: 1000,
+    }, ]);
+  }
+
+  const [todos, setTodos] = React.useState([    {
+    name: "Tarea 1",
+    id: "a74c9cd6-778c-4783-94e0-1d0f6630e92f",
+    check: false,
+    timeout: 1000,
+  },]);
+
+  const [todosShow, setTodosShow] = React.useState([
+    {
+      name: "Tarea 1",
+      id: "a74c9cd6-778c-4783-94e0-1d0f6630e92f",
+      check: false,
+      timeout: 1000,
+    },
+  ]);
+
+  const getData = () => {
+    return localStorage.getItem('todos');
+   }
+
+  useEffect(() => {
+    setTodos(JSON.parse(getData()));
+    setTodosShow(JSON.parse(getData()));
+  })
+
   const [mode, setMode] = React.useState(Theme);
 
   const changeMode = (mode) => {
@@ -41,6 +73,8 @@ function App() {
     };
     setTodos([...todos, newTodo]);
     setTodosShow([...todosShow, newTodo]);
+    localStorage.setItem("todos", JSON.stringify([...todos, newTodo]));
+    console.log(localStorage.getItem("todos"), newTodo);
   };
   ///////uuidv4 es una libreria que genera un id aleatorio
   //////newTodos lo que hace es crear un objeto con propiedades
@@ -50,14 +84,16 @@ function App() {
     const newTodos = todos.filter((todo) => todo.id !== id);
     setTodos(newTodos);
     setTodosShow(newTodos);
+    localStorage.setItem("todos", JSON.stringify(newTodos));
   };
-
+ç
   ////Lo que hace es filtrar todos los todos que no coincidan con el id y crea todos menos el que coincida
 
   const clearTodos = () => {
     const newTodos = todos.filter((todo) => !todo.check);
     setTodos(newTodos);
     setTodosShow(newTodos);
+    localStorage.setItem("todos", JSON.stringify(newTodos));
   };
 
   /////Lo que hace es filtrar todos los todos que tengan check como false y crea todos menos esos
@@ -107,7 +143,7 @@ function App() {
         }}
       >
         <Checkbox
-        color="hint"
+          color="hint"
           checked={todo.check}
           onChange={() => {
             handleCheck(todo.id);
@@ -150,7 +186,7 @@ function App() {
           backgroundColor: mode.palette.background.paper,
         }}
       >
-        <Decoration mode={mode}/>
+        <Decoration mode={mode} />
         <Container
           sx={{
             zIndex: "100",
@@ -158,7 +194,11 @@ function App() {
             padding: { xs: "50px 40px" },
           }}
         >
-          <Bar handleAddTodos={handleAddTodos} mode={mode} changeMode={changeMode}/>
+          <Bar
+            handleAddTodos={handleAddTodos}
+            mode={mode}
+            changeMode={changeMode}
+          />
           <Todos
             mode={mode}
             clearTodos={clearTodos}

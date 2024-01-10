@@ -8,7 +8,6 @@ export default function Footer({ allTodos, activeTodos, completedTodos, mode }) 
   };
   const active = () => {
     activeTodos();
-    console.log("hola");
   };
   const completed = () => {
     completedTodos();
