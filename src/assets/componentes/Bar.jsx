@@ -32,7 +32,6 @@ export default function Decoration({ handleAddTodos, mode, changeMode }) {
         sx={{
           padding: "0px",
           margin: "none",
-          alignItems: "center",
           display: "flex",
           alignItems: "center",
           alignContent: "center",

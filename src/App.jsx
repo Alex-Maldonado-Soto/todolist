@@ -21,38 +21,34 @@ import { Theme, ThemeDark } from "./assets/Theme.jsx";
 
 function App() {
   if (!localStorage.getItem("todos")) {
-    localStorage.setItem("todos", [{
-      name: "Tarea 1",
-      id: "a74c9cd6-778c-4783-94e0-1d0f6630e92f",
+    const newTodo = {
+      name: "Empezar a crear todos",
+      id: uuidv4(),
       check: false,
       timeout: 1000,
-    }, ]);
+    };
+    localStorage.setItem("todos", JSON.stringify([newTodo]));
   }
 
-  const [todos, setTodos] = React.useState([    {
-    name: "Tarea 1",
-    id: "a74c9cd6-778c-4783-94e0-1d0f6630e92f",
-    check: false,
-    timeout: 1000,
-  },]);
+  const [todos, setTodos] = React.useState([]);
 
-  const [todosShow, setTodosShow] = React.useState([
-    {
-      name: "Tarea 1",
-      id: "a74c9cd6-778c-4783-94e0-1d0f6630e92f",
-      check: false,
-      timeout: 1000,
-    },
-  ]);
+  const [todosShow, setTodosShow] = React.useState([]);
 
   const getData = () => {
     return localStorage.getItem('todos');
    }
 
-  useEffect(() => {
-    setTodos(JSON.parse(getData()));
-    setTodosShow(JSON.parse(getData()));
-  })
+
+  if (localStorage.getItem("todos")) {
+    useEffect(() => {
+      setTodos(JSON.parse(getData()));
+      if (todosShow == "") {
+        setTodosShow(JSON.parse(getData()));
+        
+      }
+    })
+    
+  }
 
   const [mode, setMode] = React.useState(Theme);
 
@@ -125,8 +121,13 @@ function App() {
     });
     setTodos(newTodos);
     setTodosShow(newTodos);
+    localStorage.setItem("todos", JSON.stringify(newTodos));
   };
   //////Lo que hace es cambiar el valor de check del todo que coincida con el id y vuelve a crear todos
+
+
+
+
 
   //////////Crea una lista de todos y un checkbox para cada uno de ellos usando los datos de los objetos
   const listTodos = todosShow.map((todo) => (
@@ -179,6 +180,7 @@ function App() {
         component="main"
         sx={{
           padding: { xs: "0px", md: "0px" },
+          maxWidth: { xs: "100vw", md: "100vw" },
           height: "100vh",
           margin: "0",
           backgroundColor: mode.palette.background.paper,
