@@ -59,16 +59,39 @@ export default function Decoration({mode}) {
   } else if (mode == ThemeDark) {
 
       return (
-        <Container sx={{padding: {xs: 0, sm: 0}}}>
-          <Box component="picture"
+        <Container
+        sx={{
+          padding: { xs: 0, sm: 0 },
+          width: "100vw",
+          maxWidth: {
+            xs: "100vw",
+            sm: "100vw",
+            md: "100vw",
+            lg: "100vw",
+            xl: "100vw",
+            xxl: "100vw",
+            xxxl: "100vw",
+          },
+        }}
+      >
+        <Box
+          component="picture"
           sx={{
-            padding: 0,
             display: "block",
             position: "absolute",
             width: "100vw",
+            maxWidth: {
+              xs: "100vw",
+              sm: "100vw",
+              md: "100vw",
+              lg: "100vw",
+              xl: "100vw",
+              xxl: "100vw",
+              xxxl: "100vw",
+            },
             height: "30vh",
           }}
-          >
+        >
               <source srcSet={img.bgDesktopDark} media="(max-width: 1024px)" alt=""/>
             <Img
               src={img.bgMobileDark}
